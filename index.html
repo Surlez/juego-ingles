@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <title>Video Games MC - Reload</title>
+    <style>
+        .hidden { display: none; }
+        .search-button { cursor: pointer; text-decoration: underline; color: #007BFF; }
+
+        /* Diseño para los subtítulos de la barra de navegación */
+        .search-button {
+            font-weight: bold;
+            font-size: 1.1em;
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #007BFF;
+            color: #fff;
+        }
+
+        .search-button:active {
+            background-color: #0056b3;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Diseño adicional para el contenedor de búsqueda */
+        #searchBox {
+            width: 70%;
+            padding: 8px;
+            font-size: 1.1em;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: border-color 0.3s;
+        }
+
+        #searchBox:focus {
+            outline: none;
+            border-color: #007BFF;
+        }
+
+        /* Cambiar el color de los subtítulos */
+        .navbar .rosa {
+            color: #FF6347;
+        }
+
+        .navbar .celeste1 {
+            color: #00BFFF;
+        }
+
+        .navbar .dorado {
+            color: #FFD700;
+        }
+
+        .navbar .free {
+            color: #32CD32;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <button id="toggleTheme">🌙</button>
+        <img src="img/logo.png" alt="Video Games MC - Reload" class="logo-size">
+        <h1 class="title">Video Games MC - Reload</h1>
+        <nav class="navbar">
+            <a href="#ElementsOfWebDesign" class="rosa search-button" onclick="setSearchValue('Modern Web Design')">Modern Web Design</a>
+            <a href="#Hardware" class="celeste1 search-button" onclick="setSearchValue('Hardware for Gamers')">Hardware for Gamers</a>
+            <a href="#Software" class="celeste1 search-button" onclick="setSearchValue('Essential Software')">Essential Software</a>
+            <a href="#Essay" class="dorado search-button" onclick="setSearchValue('Technical Essays')">Technical Essays</a>
+            <a href="#ResponsiveDesign" class="dorado search-button" onclick="setSearchValue('Responsive Design')">Responsive Design</a>
+            <a href="#E-Waste" class="free search-button" onclick="setSearchValue('E-Waste Impact')">E-Waste Impact</a>
+        </nav>
+        <input type="text" id="searchBox" placeholder="Search for a topic...">
+        <hr class="divider">
+    </header>
+    <div class="container">
+        <div class="article-preview" data-aos="fade-up" data-title="Modern Web Design">
+            <h2>Modern Web Design</h2>
+            <p>Explore the principles of modern web design.</p>
+            <a href="articulos/disenio-web.html" class="btn">Read More</a>
+        </div>
+        <div class="article-preview" data-aos="fade-up" data-title="Hardware for Gamers">
+            <h2>Hardware for Gamers</h2>
+            <p>Discover the best hardware for gaming in 2024.</p>
+            <a href="articulos/gamer.html" class="btn">Read More</a>
+        </div>
+        <div class="article-preview" data-aos="fade-up" data-title="Essential Software">
+            <h2>Essential Software</h2>
+            <p>Learn about essential applications for your PC.</p>
+            <a href="articulos/ecencia.html" class="btn">Read More</a>
+        </div>
+        <div class="article-preview" data-aos="fade-up" data-title="E-Waste Impact">
+            <h2>E-Waste Impact</h2>
+            <p>Learn about the effects of electronic waste.</p>
+            <a href="articulos/basura.html" class="btn">Read More</a>
+        </div>
+        <div class="article-preview" data-aos="fade-up" data-title="Technical Essays">
+            <h2>Technical Essays</h2>
+            <p>Discover how to structure a technical essay.</p>
+            <a href="articulos/ensayo.html" class="btn">Read More</a>
+        </div>
+        <div class="article-preview" data-aos="fade-up" data-title="Responsive Design">
+            <h2>Responsive Design</h2>
+            <p>Learn how to make your site responsive.</p>
+            <a href="articulos/responsive.html" class="btn">Read More</a>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <p>&copy; 2024 Video Games MC - Reload. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Initialize the animation effect
+        AOS.init();
+
+        // Function to filter the articles based on search input
+        document.getElementById("searchBox").addEventListener("input", function() {
+            var filter = this.value.toLowerCase(); // Get the search box text
+            var articles = document.querySelectorAll(".article-preview"); // Get all the articles
+            
+            articles.forEach(function(article) {
+                var title = article.getAttribute("data-title").toLowerCase(); // Get the article title
+                
+                // If the title includes the search input, show the article, otherwise hide it
+                if (title.includes(filter)) {
+                    article.classList.remove("hidden");
+                } else {
+                    article.classList.add("hidden");
+                }
+            });
+        });
+
+        // Function to change the search input value when clicking on a subtitle
+        function setSearchValue(value) {
+            document.getElementById("searchBox").value = value; // Set the value in the search box
+            document.getElementById("searchBox").dispatchEvent(new Event('input')); // Trigger the event to filter the articles
+        }
+    </script>
+</body>
+</html>
